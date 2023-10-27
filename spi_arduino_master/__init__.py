@@ -1,9 +1,9 @@
 """
 =========
-My Entity
+spi_arduino_master
 =========
 
-My Entity model template The System Development Kit
+spi_arduino_master model template The System Development Kit
 Used as a template for all TheSyDeKick Entities.
 
 Current docstring documentation style is Numpy
@@ -27,7 +27,7 @@ from thesdk import *
 
 import numpy as np
 
-class myentity(thesdk):
+class spi_arduino_master(thesdk):
     @property
     def _classfile(self):
         return os.path.dirname(os.path.realpath(__file__)) + "/"+__name__
@@ -81,8 +81,8 @@ class myentity(thesdk):
 
 if __name__=="__main__":
     import matplotlib.pyplot as plt
-    from  myentity import *
-    from  myentity.controller import controller as myentity_controller
+    from  spi_arduino_master import *
+    from  spi_arduino_master.controller import controller as spi_arduino_master_controller
     import pdb
     import math
     length=1024
@@ -92,7 +92,7 @@ if __name__=="__main__":
     models=[ 'py']
     duts=[]
     for model in models:
-        d=myentity()
+        d=spi_arduino_master()
         duts.append(d) 
         d.model=model
         d.Rs=rs

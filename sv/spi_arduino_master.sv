@@ -1,4 +1,4 @@
-module myentity( input reset,
+module spi_arduino_master( input reset,
                  input A, 
                  output Z );
 //reset does nothing

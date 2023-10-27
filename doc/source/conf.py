@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'myentity'
+project = 'spi_arduino_master'
 copyright = '2019 TheSyDeKick Community'
 author = 'Your name'
 
@@ -110,7 +110,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'myentitydoc'
+htmlhelp_basename = 'spi_arduino_masterdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -137,7 +137,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'myentity.tex', 'myentity Documentation',
+    (master_doc, 'spi_arduino_master.tex', 'spi_arduino_master Documentation',
      'Your Name', 'manual'),
 ]
 
@@ -147,7 +147,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'myentity', 'myentity Documentation',
+    (master_doc, 'spi_arduino_master', 'spi_arduino_master Documentation',
      [author], 1)
 ]
 
@@ -158,8 +158,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'myentity', 'myentity Documentation',
-     author, 'myentity', 'One line description of project.',
+    (master_doc, 'spi_arduino_master', 'spi_arduino_master Documentation',
+     author, 'spi_arduino_master', 'One line description of project.',
      'Miscellaneous'),
 ]
 
