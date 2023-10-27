@@ -160,9 +160,9 @@ class spi_arduino_master():
             stoptime=time.time_ns()
             print((stoptime-start_time)/ (10 ** 9))
 
-            pdb.set_trace()
+            #pdb.set_trace()
             #self.IOS.Members['miso'].Data=miso
-            a=5
+            #a=5
     def run(self,*arg):
         if len(arg)>0:
             self.par=True      #flag for parallel processing
