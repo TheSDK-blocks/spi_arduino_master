@@ -3,8 +3,10 @@
 spi_arduino_master
 ===================
 
-SPI master wit harduino. Has 2 implementations/structures: 
+SPI master wit harduino. Has 2 implementations/structures:
+
 1: Compatible with SDK spi_slave controller generated files. Outputs of spli_slave controller can be connected to the input IOs. This entity will go once trhough the IO files and write them to arduino's pins and retur miso. Aclso can be se to read and write to txt files by setting self.read_from to "file" instead of "IOs". Entity is used by self.run() function. One values/line is red from IOs/file and written straight to Arduino's pins and miso ir read.
+
 2: Do not requires of running self.run() function but instead is used by 2 separate functions: writeToMem(self,conf), pushConf(self,conf). 
 
 In arduino swithc between structure is done by commenting and uncommenting corresponding parts.
