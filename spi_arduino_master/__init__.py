@@ -77,11 +77,11 @@ class spi_arduino_master():
         #if self.model=='vhdl':
         #    self.print_log(type='F', msg='VHDL simulation is not supported with v1.2\n Use v1.1')
     def write_read(self,x):
-         """
-            Functions takes string of an integer that represets value of sclk, mosi and cs and updates given values to Arduino's pins while reading and returning miso pin.
+        """
+        Functions takes string of an integer that represets value of sclk, mosi and cs and updates given values to Arduino's pins while reading and returning miso pin.
 
-            Parameters
-            -----------
+        Parameters
+        -----------
             x : string
                 string of integer,  "4"
         """
