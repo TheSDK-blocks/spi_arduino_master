@@ -3,18 +3,11 @@
 spi_arduino_master
 =========
 
-spi_arduino_master model template The System Development Kit
-Used as a template for all TheSyDeKick Entities.
+SPI master wit harduino. Has 2 implementations/structures: 
+1: Compatible with SDK spi_slave controller generated files. Outputs of spli_slave controller can be connected to the input IOs. This entity will go once trhough the IO files and write them to arduino's pins and retur miso. Aclso can be se to read and write to txt files by setting self.read_from to "file" instead of "IOs". Entity is used by self.run() function. One values/line is red from IOs/file and written straight to Arduino's pins and miso ir read.
+2: Do not requires of running self.run() function but instead is used by 2 separate functions: writeToMem(self,conf), pushConf(self,conf). 
 
-Current docstring documentation style is Numpy
-https://numpydoc.readthedocs.io/en/latest/format.html
-
-This text here is to remind you that documentation is important.
-However, youu may find it out the even the documentation of this 
-entity may be outdated and incomplete. Regardless of that, every day 
-and in every way we are getting better and better :).
-
-Initially written by Marko Kosunen, marko.kosunen@aalto.fi, 2017.
+In arduino swithc between structure is done by commenting and uncommenting corresponding parts.
 
 """
 
@@ -55,6 +48,11 @@ class spi_arduino_master():
         self.read_from = "file"   # IOs or file. IOs not tested
         self.file_in_path = 'in1.txt' 
         self.file_out_path = 'out1.txt' 
+        self.structure=2 # 1, 2
+
+        self.const_time=False
+        self.time_step=1
+        self.time_step_fact=10**(-1)       
         
         self.model='py';             # Can be set externally, but is not propagated
         self.par= False              # By default, no parallel processing
@@ -89,6 +87,14 @@ class spi_arduino_master():
 
 
     def writeToMem(self,conf):
+        """
+            Functions takes binary string (big endian) as a "conf" parameter and writes that configure string to arduinos memory.
+
+            Parameters
+            -----------
+            conf : string
+                binary string (big endian),  "010101101"
+        """
         
         #pdb.set_trace()
         conf_len=len(conf)
@@ -143,6 +149,16 @@ class spi_arduino_master():
         a=5
 
     def pushConf(self,conf):
+        """
+         Function pushed configure string from arduino's memory to pins and reads miso intput to memory. After whole configure string is sent to pins, miso string is returned from arduino to return valuae of the function. This function requires same configure string as a "conf" parameter as writeToMem(self,conf) in order to know the expected number of bytes.
+
+         Parameters
+         ----------
+         conf : string
+            binary string (big endian),  "010101101"
+
+
+        """
         conf_len=len(conf)
         bytes_num=int(np.ceil(len(conf)/8))
         mon_array=np.zeros(bytes_num)
@@ -191,11 +207,10 @@ class spi_arduino_master():
         return monitor
 
     def main(self):
-        structure=2 # 1, 2
-        if structure ==1: 
-            const_time=False
-            time_step=1
-            time_step_fact=10**(-1)                 
+        if self.structure ==1: 
+            const_time=self.const_time
+            time_step=self.time_step
+            time_step_fact=self. time_step_fact                 
             #pdb.set_trace() 
             #print(arduino.readline())
             #time.sleep(0.1)
@@ -224,12 +239,16 @@ class spi_arduino_master():
                     stoptime=time.time_ns()
                     print((stoptime-start_time)/ (10 ** 9))
             elif self.read_from=='IOs':
+                # Inputs
+
                 #t=self.IOS.Members['time'].Data
                 #cs=self.IOS.Members['cs'].Data
                 #sclk=self.IOS.Members['sclk'].Data
                 #mosi=self.IOS.Members['mosi'].Data
                 #miso=np.zeros(len(t))
                 #pdb.set_trace() 
+
+                # Test values
                 t=np.arange(22).reshape(-1,1)
                 cs=np.zeros_like(t)
                 cs[len(t)-1]=1
@@ -239,6 +258,8 @@ class spi_arduino_master():
                 mosi[np.array([4,5,6,7,12,13,14,15,19,20,21])]=1
                 miso=np.zeros(len(t))
 
+
+                # Function starts
                 start_time=time.time_ns()
                 prev_time=0
                 data=(np.hstack((sclk,mosi,cs)))# .astype(str)
@@ -268,7 +289,7 @@ class spi_arduino_master():
                 pdb.set_trace()
                 #self.IOS.Members['miso'].Data=miso
                 a=5
-        elif structure==2:
+        elif self.structure==2:
             #pdb.set_trace()
             conf_len=20
             bytes_num=int(np.ceil(conf_len/8))
