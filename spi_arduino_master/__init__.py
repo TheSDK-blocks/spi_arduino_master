@@ -85,12 +85,10 @@ class spi_arduino_master():
             x : string
                 string of integer,  "4"
         """
-
         d=self.arduino.write(bytes(x, 'utf-8'))
         d=arduino.write(x)
         time.sleep(0.001)
         data = self.arduino.read(size=1)
-        #data='0'
         return data
 
 
