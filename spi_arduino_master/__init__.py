@@ -1,7 +1,7 @@
 """
-=========
+===================
 spi_arduino_master
-=========
+===================
 
 SPI master wit harduino. Has 2 implementations/structures: 
 1: Compatible with SDK spi_slave controller generated files. Outputs of spli_slave controller can be connected to the input IOs. This entity will go once trhough the IO files and write them to arduino's pins and retur miso. Aclso can be se to read and write to txt files by setting self.read_from to "file" instead of "IOs". Entity is used by self.run() function. One values/line is red from IOs/file and written straight to Arduino's pins and miso ir read.
@@ -77,12 +77,21 @@ class spi_arduino_master():
         #if self.model=='vhdl':
         #    self.print_log(type='F', msg='VHDL simulation is not supported with v1.2\n Use v1.1')
     def write_read(self,x):
-            d=self.arduino.write(bytes(x, 'utf-8'))
-            #d=arduino.write(x)
-            #time.sleep(0.001)
-            #data = self.arduino.read(size=1)
-            data='0'
-            return data
+         """
+            Functions takes string of an integer that represets value of sclk, mosi and cs and updates given values to Arduino's pins while reading and returning miso pin.
+
+            Parameters
+            -----------
+            x : string
+                string of integer,  "4"
+        """
+
+        d=self.arduino.write(bytes(x, 'utf-8'))
+        d=arduino.write(x)
+        time.sleep(0.001)
+        data = self.arduino.read(size=1)
+        #data='0'
+        return data
 
 
 
