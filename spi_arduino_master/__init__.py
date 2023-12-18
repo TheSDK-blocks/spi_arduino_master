@@ -3,13 +3,13 @@
 spi_arduino_master
 ===================
 
-SPI master wit harduino. Has 2 implementations/structures:
+SPI master with Arduino. Has 2 implementations/structures:
 
-1: Compatible with SDK spi_slave controller generated files. Outputs of spli_slave controller can be connected to the input IOs. This entity will go once trhough the IO files and write them to arduino's pins and retur miso. Aclso can be se to read and write to txt files by setting self.read_from to "file" instead of "IOs". Entity is used by self.run() function. One values/line is red from IOs/file and written straight to Arduino's pins and miso ir read.
+1: Compatible with SDK spi_slave controller generated files. Outputs of spli_slave controller can be connected to the input IOs. This entity will go once trhough the IO files and write them to Arduino's pins and retur miso. Aclso can be se to read and write to txt files by setting self.read_from to "file" instead of "IOs". Entity is used by self.run() function. One values/line is red from IOs/file and written straight to Arduino's pins and miso ir read.
 
 2: Do not requires of running self.run() function but instead is used by 2 separate functions: writeToMem(self,conf), pushConf(self,conf). 
 
-In arduino swithc between structure is done by commenting and uncommenting corresponding parts.
+In Arduino swithc between structure is done by commenting and uncommenting corresponding parts.
 
 """
 
@@ -97,7 +97,7 @@ class spi_arduino_master():
 
     def writeToMem(self,conf):
         """
-            Functions takes binary string (big endian) as a "conf" parameter and writes that configure string to arduinos memory.
+            Functions takes binary string (big endian) as a "conf" parameter and writes that configure string to Arduino's memory.
 
             Parameters
             -----------
@@ -159,7 +159,7 @@ class spi_arduino_master():
 
     def pushConf(self,conf):
         """
-         Function pushed configure string from arduino's memory to pins and reads miso intput to memory. After whole configure string is sent to pins, miso string is returned from arduino to return valuae of the function. This function requires same configure string as a "conf" parameter as writeToMem(self,conf) in order to know the expected number of bytes.
+         Function pushed configure string from Arduino's memory to pins and reads miso intput to memory. After whole configure string is sent to pins, miso string is returned from Arduino to return valuae of the function. This function requires same configure string as a "conf" parameter as writeToMem(self,conf) in order to know the expected number of bytes.
 
          Parameters
          ----------
