@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        run git checkout HEAD^
+        run: git checkout HEAD^
           #uses: actions/checkout@v4
 
       - name: Setup Pages
